@@ -1,0 +1,111 @@
+add_task:
+  fields:
+    title:
+      required: true
+      example: "Call the plumber"
+      selector:
+        text:
+    bucket:
+      default: should
+      selector:
+        select:
+          translation_key: bucket
+          options: [must, should, could, wont]
+    part:
+      selector:
+        select:
+          translation_key: part
+          options: [morning, afternoon, evening, night]
+    minutes:
+      default: 30
+      selector:
+        number:
+          min: 0
+          max: 1440
+          step: 5
+          unit_of_measurement: min
+    date:
+      selector:
+        date:
+
+set_task_done:
+  fields:
+    task_id:
+      selector:
+        text:
+    title:
+      selector:
+        text:
+    date:
+      selector:
+        date:
+    done:
+      default: true
+      selector:
+        boolean:
+
+move_task:
+  fields:
+    task_id:
+      selector:
+        text:
+    title:
+      selector:
+        text:
+    date:
+      selector:
+        date:
+    bucket:
+      selector:
+        select:
+          translation_key: bucket
+          options: [must, should, could, wont]
+    part:
+      selector:
+        select:
+          translation_key: part
+          options: [morning, afternoon, evening, night]
+
+remove_task:
+  fields:
+    task_id:
+      selector:
+        text:
+    title:
+      selector:
+        text:
+    date:
+      selector:
+        date:
+
+clear_day:
+  fields:
+    date:
+      selector:
+        date:
+    only_done:
+      default: false
+      selector:
+        boolean:
+
+carry_over:
+  fields:
+    to_date:
+      selector:
+        date:
+    from_date:
+      selector:
+        date:
+    buckets:
+      default: [must]
+      selector:
+        select:
+          multiple: true
+          translation_key: bucket
+          options: [must, should, could, wont]
+
+get_day:
+  fields:
+    date:
+      selector:
+        date:

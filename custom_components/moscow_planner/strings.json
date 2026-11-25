@@ -1,0 +1,209 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "MoSCoW Planner",
+        "description": "Adds a MoSCoW day planner with day parts to your sidebar, plus sensors, services and a dashboard card. Day part times and budgets are set inside the planner."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "MoSCoW Planner is already set up."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "current_part": {
+        "name": "Current day part",
+        "state": {
+          "morning": "Morning",
+          "afternoon": "Afternoon",
+          "evening": "Evening",
+          "night": "Night"
+        }
+      },
+      "progress": {
+        "name": "Progress today"
+      },
+      "must_remaining": {
+        "name": "Musts remaining"
+      },
+      "next_must": {
+        "name": "Next Must"
+      },
+      "morning_planned": {
+        "name": "Morning planned"
+      },
+      "afternoon_planned": {
+        "name": "Afternoon planned"
+      },
+      "evening_planned": {
+        "name": "Evening planned"
+      },
+      "night_planned": {
+        "name": "Night planned"
+      }
+    },
+    "binary_sensor": {
+      "over_budget": {
+        "name": "Day part over budget"
+      },
+      "must_overload": {
+        "name": "Too many Musts"
+      }
+    }
+  },
+  "services": {
+    "add_task": {
+      "name": "Add task",
+      "description": "Adds a task to a day. The day part defaults to the current one.",
+      "fields": {
+        "title": {
+          "name": "Title",
+          "description": "What needs doing."
+        },
+        "bucket": {
+          "name": "Priority",
+          "description": "Must, should, could or wont."
+        },
+        "part": {
+          "name": "Day part",
+          "description": "Morning, afternoon, evening or night."
+        },
+        "minutes": {
+          "name": "Minutes",
+          "description": "Time estimate."
+        },
+        "date": {
+          "name": "Date",
+          "description": "Defaults to today."
+        }
+      }
+    },
+    "set_task_done": {
+      "name": "Set task done",
+      "description": "Marks a task done or not done, found by id or title.",
+      "fields": {
+        "task_id": {
+          "name": "Task ID",
+          "description": "Id from add_task or get_day."
+        },
+        "title": {
+          "name": "Title",
+          "description": "Exact title, case-insensitive."
+        },
+        "date": {
+          "name": "Date",
+          "description": "Defaults to today."
+        },
+        "done": {
+          "name": "Done",
+          "description": "True to finish the task."
+        }
+      }
+    },
+    "move_task": {
+      "name": "Move task",
+      "description": "Changes the priority and/or day part of a task.",
+      "fields": {
+        "task_id": {
+          "name": "Task ID",
+          "description": "Id from add_task or get_day."
+        },
+        "title": {
+          "name": "Title",
+          "description": "Exact title, case-insensitive."
+        },
+        "date": {
+          "name": "Date",
+          "description": "Defaults to today."
+        },
+        "bucket": {
+          "name": "Priority",
+          "description": "New priority."
+        },
+        "part": {
+          "name": "Day part",
+          "description": "New day part."
+        }
+      }
+    },
+    "remove_task": {
+      "name": "Remove task",
+      "description": "Deletes a task.",
+      "fields": {
+        "task_id": {
+          "name": "Task ID",
+          "description": "Id from add_task or get_day."
+        },
+        "title": {
+          "name": "Title",
+          "description": "Exact title, case-insensitive."
+        },
+        "date": {
+          "name": "Date",
+          "description": "Defaults to today."
+        }
+      }
+    },
+    "clear_day": {
+      "name": "Clear day",
+      "description": "Removes every task from a day, or only finished ones.",
+      "fields": {
+        "date": {
+          "name": "Date",
+          "description": "Defaults to today."
+        },
+        "only_done": {
+          "name": "Only finished",
+          "description": "Keep unfinished tasks."
+        }
+      }
+    },
+    "carry_over": {
+      "name": "Carry over",
+      "description": "Copies unfinished tasks from an earlier day, skipping ones already planned.",
+      "fields": {
+        "to_date": {
+          "name": "To date",
+          "description": "Defaults to today."
+        },
+        "from_date": {
+          "name": "From date",
+          "description": "Defaults to the day before."
+        },
+        "buckets": {
+          "name": "Priorities",
+          "description": "Which priorities to copy. Defaults to must."
+        }
+      }
+    },
+    "get_day": {
+      "name": "Get day",
+      "description": "Returns a day's tasks and statistics for use in scripts and templates.",
+      "fields": {
+        "date": {
+          "name": "Date",
+          "description": "Defaults to today."
+        }
+      }
+    }
+  },
+  "selector": {
+    "bucket": {
+      "options": {
+        "must": "Must",
+        "should": "Should",
+        "could": "Could",
+        "wont": "Won't"
+      }
+    },
+    "part": {
+      "options": {
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "night": "Night"
+      }
+    }
+  }
+}
