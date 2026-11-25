@@ -1,7 +1,7 @@
 """Constants for the MoSCoW Planner integration."""
 
 DOMAIN = "moscow_planner"
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 STORAGE_KEY = f"{DOMAIN}.state"
 STORAGE_VERSION = 1

@@ -18,9 +18,9 @@ export interface Mounted {
   unmount(): void;
 }
 
-export function mountPlanner(host: HTMLElement, adapter: StorageAdapter): Mounted {
+export function mountPlanner(host: HTMLElement, adapter: StorageAdapter, onMenu?: () => void): Mounted {
   const root: Root = createRoot(prepare(host));
-  root.render(<App adapter={adapter} />);
+  root.render(<App adapter={adapter} onMenu={onMenu} />);
   return { unmount: () => root.unmount() };
 }
 

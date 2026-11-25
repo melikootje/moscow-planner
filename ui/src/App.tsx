@@ -60,7 +60,7 @@ function sortTasks(tasks: Task[]): Task[] {
 
 /* ====================================================================== */
 
-export function App({ adapter }: { adapter: StorageAdapter }) {
+export function App({ adapter, onMenu }: { adapter: StorageAdapter; onMenu?: () => void }) {
   const { state, status, saving, saveError, update } = usePlanner(adapter);
   const now = useNow();
   const today = dateKey(now);
@@ -116,6 +116,11 @@ export function App({ adapter }: { adapter: StorageAdapter }) {
   return (
     <div className="app">
       <header className="top">
+        {onMenu && (
+          <button className="btn icon menu-btn" onClick={onMenu} aria-label="Open Home Assistant menu">
+            <Icon name="menu" size={20} />
+          </button>
+        )}
         <div className="title-block">
           <h1>MoSCoW day planner</h1>
           <p className="sub">

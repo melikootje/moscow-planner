@@ -44,7 +44,9 @@ class MoscowPlannerPanel extends HaBase {
   protected mountOnce(): void {
     this.style.display = "block";
     this.style.minHeight = "100%";
-    this.mounted = mountPlanner(this, createHaAdapter(() => this._hass));
+    // Home Assistant listens for this event to open or collapse its sidebar.
+    const toggleMenu = () => this.dispatchEvent(new Event("hass-toggle-menu", { bubbles: true, composed: true }));
+    this.mounted = mountPlanner(this, createHaAdapter(() => this._hass), toggleMenu);
   }
 }
 

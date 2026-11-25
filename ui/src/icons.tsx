@@ -43,7 +43,7 @@ export function PartIcon({ part, size = 18 }: { part: Part; size?: number }) {
   }
 }
 
-export function Icon({ name, size = 16 }: { name: "plus" | "trash" | "edit" | "chevron-left" | "chevron-right" | "gear" | "check" | "x" | "carry"; size?: number }) {
+export function Icon({ name, size = 16 }: { name: "plus" | "trash" | "edit" | "chevron-left" | "chevron-right" | "gear" | "check" | "x" | "carry" | "menu"; size?: number }) {
   const props = { ...common, width: size, height: size };
   switch (name) {
     case "plus":
@@ -93,6 +93,12 @@ export function Icon({ name, size = 16 }: { name: "plus" | "trash" | "edit" | "c
       return (
         <svg {...props}>
           <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      );
+    case "menu":
+      return (
+        <svg {...props}>
+          <path d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       );
     case "carry":
